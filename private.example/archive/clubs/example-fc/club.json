@@ -1,0 +1,17 @@
+{
+  "slug": "example-fc",
+  "name": "Example FC",
+  "short": "EFC",
+  "aliases": ["Example Football Club"],
+  "football_data_id": 0,
+  "tier": 1,
+  "crest": "crest.png",
+  "kits": {
+    "home": {"season": "2026/27", "primary": "#1f3a8f", "secondary": "#d1263a", "accent": "#ffffff",
+             "colour_words": "deep blue with a red centre stripe", "description": "deep blue shirt with a red centre stripe, blue shorts, blue socks",
+             "sponsor": "Example Air", "file": "kits/home.jpg"},
+    "away": {"season": "2026/27", "primary": "#f2f2f2", "secondary": "#1f3a8f", "accent": "#d1263a",
+             "colour_words": "off-white with a thin blue stripe", "description": "off-white shirt with a thin blue centre stripe, white shorts",
+             "sponsor": "Example Air", "file": "kits/away.jpg"}
+  }
+}

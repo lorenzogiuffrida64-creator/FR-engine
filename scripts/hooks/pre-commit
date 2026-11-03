@@ -1,0 +1,3 @@
+#!/bin/sh
+# Blocks secrets and private material before they enter a commit. Installed by scripts/setup.sh.
+exec python3 "$(git rev-parse --show-toplevel)/scripts/security_check.py"

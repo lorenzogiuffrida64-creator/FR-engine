@@ -1,0 +1,11 @@
+{
+  "slug": "marco-rossi",
+  "name": "Marco Rossi",
+  "club": "example-fc",
+  "number": 10,
+  "shirt_name": "ROSSI",
+  "priority": 1,
+  "available": true,
+  "look": "athletic man in his late twenties, olive skin, short dark hair, short beard",
+  "traits": ["points to the sky after scoring"]
+}

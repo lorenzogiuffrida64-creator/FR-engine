@@ -1,0 +1,12 @@
+# keys: only .env.example (empty) is ever committed
+.env
+.env.*
+!.env.example
+
+# client material: its own private repository, cloned into private/ (see SECURITY.md)
+private/
+private.local/
+
+__pycache__/
+*.pyc
+.DS_Store

@@ -1,0 +1,145 @@
+{
+  "higgsfield": {
+    "base_url": "https://api.higgsfield.ai",
+    "env_key_id": "HF_API_KEY_ID",
+    "env_key_secret": "HF_API_KEY_SECRET",
+    "models": {
+      "soul": "higgsfield-ai/soul/v2/standard",
+      "cinema": "higgsfield-ai/soul/cinema"
+    },
+    "resolution": "1080p",
+    "aspect_ratio": "3:4",
+    "aspect_ratio_group": "3:2",
+    "batch_size": 4,
+    "max_parallel": 4,
+    "poll_seconds": [
+      2,
+      10
+    ],
+    "timeout_seconds": 600
+  },
+  "fal": {
+    "queue_url": "https://queue.fal.run",
+    "env_key": "FAL_KEY",
+    "edit_models": [
+      "google/nano-banana-2.1/edit",
+      "fal-ai/bytedance/seedream/v4/edit"
+    ],
+    "edit_models_note": "Ordered fallback chain. Every model must accept prompt + image_urls. The second id is a placeholder: confirm the backup model and its id.",
+    "resolution": "2K",
+    "output_format": "png",
+    "max_faces": 3,
+    "crop_padding": 0.35,
+    "crop_min_side": 1024,
+    "unchanged_threshold": 4.0,
+    "harmonize": true,
+    "poll_seconds": [
+      2,
+      8
+    ],
+    "timeout_seconds": 300
+  },
+  "generation": {
+    "shots_per_request": 24,
+    "shots_per_request_immediate": 16,
+    "split": {
+      "soul": 0.5,
+      "cinema": 0.5
+    },
+    "keep_after_preselection": 10,
+    "max_players_per_shot": 4,
+    "max_players_group": 9
+  },
+  "qc": {
+    "kit_hue_degrees": 25,
+    "kit_neutral_chroma": 12,
+    "kit_neutral_lightness": 25,
+    "kit_min_coverage": 0.35,
+    "face_similarity_min": 0.42,
+    "face_check": "insightface if installed, otherwise Claude vision against the face archive"
+  },
+  "delivery": {
+    "formats": {
+      "feed": [
+        1080,
+        1350
+      ],
+      "story": [
+        1080,
+        1920
+      ],
+      "x": [
+        1920,
+        1080
+      ]
+    },
+    "default_formats": [
+      "feed"
+    ],
+    "ai_tag": {
+      "text": "AI",
+      "corner": "bottom-right",
+      "size": 0.028,
+      "opacity": 0.75
+    }
+  },
+  "prematch": {
+    "provider": "football-data.org",
+    "base_url": "https://api.football-data.org/v4",
+    "env_key": "FOOTBALL_DATA_TOKEN",
+    "competitions": [
+      "CL",
+      "PL",
+      "PD",
+      "SA",
+      "BL1",
+      "FL1",
+      "EC",
+      "WC"
+    ],
+    "days_ahead": 1,
+    "run_local_time": "10:00",
+    "players_per_team": 2,
+    "big_match_rule": "both clubs in archive/clubs with tier 1, or any CL knockout game, or a listed derby",
+    "derbies": [
+      [
+        "real-madrid",
+        "barcelona"
+      ],
+      [
+        "inter",
+        "milan"
+      ],
+      [
+        "manchester-united",
+        "manchester-city"
+      ],
+      [
+        "liverpool",
+        "everton"
+      ],
+      [
+        "arsenal",
+        "tottenham"
+      ],
+      [
+        "roma",
+        "lazio"
+      ],
+      [
+        "juventus",
+        "inter"
+      ],
+      [
+        "psg",
+        "marseille"
+      ],
+      [
+        "bayern-munich",
+        "borussia-dortmund"
+      ]
+    ],
+    "kit_rule": "home team wears home; away team wears home unless its main colour clashes with the home team's (delta E below clash_delta_e), then away",
+    "clash_delta_e": 25
+  }
+}

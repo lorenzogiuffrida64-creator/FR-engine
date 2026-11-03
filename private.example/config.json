@@ -1,0 +1,9 @@
+{
+  "client": {
+    "name": "Example Client",
+    "contact": "Example Contact",
+    "instagram": "example_handle",
+    "timezone": "Europe/Rome",
+    "tone": "every graphic says something positive about the player"
+  }
+}

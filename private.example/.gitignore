@@ -1,0 +1,6 @@
+# generated per request: large, rebuilt by the engine; the platform keeps its own storage
+requests/
+library/*
+!library/library.json
+__pycache__/
+.DS_Store

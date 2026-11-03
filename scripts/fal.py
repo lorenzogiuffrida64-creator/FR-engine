@@ -1,0 +1,54 @@
+"""fal.ai queue client for image edits (Nano Banana 2.1 Edit and the fallback chain).
+
+REST queue: POST https://queue.fal.run/<endpoint> with `Authorization: Key <FAL_KEY>` returns
+request_id + status_url + response_url. Poll status_url until COMPLETED, then GET response_url.
+"""
+from common import CFG, HTTPError, data_uri, http_json, need_env, poll
+
+F = CFG["fal"]
+
+
+def _auth():
+    (key,) = need_env(F["env_key"])
+    return {"Authorization": f"Key {key}"}
+
+
+def edit(model, prompt, images, aspect_ratio="auto"):
+    """images: list of local paths (image 1 first). Returns the result dict ({images:[{url,...}], description})."""
+    auth = _auth()
+    body = {"prompt": prompt, "image_urls": [data_uri(p) for p in images], "num_images": 1,
+            "output_format": F["output_format"]}
+    if model.startswith("google/nano-banana"):
+        body.update({"resolution": F["resolution"], "aspect_ratio": aspect_ratio})
+    h = http_json("POST", f"{F['queue_url']}/{model}", headers=auth, body=body, timeout=120)
+    status_url = h.get("status_url") or f"{F['queue_url']}/{model}/requests/{h['request_id']}/status"
+    response_url = h.get("response_url") or f"{F['queue_url']}/{model}/requests/{h['request_id']}"
+
+    def check():
+        s = http_json("GET", status_url, headers=auth)
+        if s.get("status") == "COMPLETED":
+            return s
+        if s.get("status") in ("FAILED", "ERROR", "CANCELLED"):
+            raise HTTPError(500, str(s))
+        return None
+
+    poll(check, F["poll_seconds"], F["timeout_seconds"])
+    return http_json("GET", response_url, headers=auth)
+
+
+def edit_with_fallback(prompt, images, accept, aspect_ratio="auto"):
+    """Try each model in config order. accept(result) -> (ok, reason). Returns (result, model, attempts)."""
+    attempts = []
+    for model in F["edit_models"]:
+        try:
+            r = edit(model, prompt, images, aspect_ratio)
+            if not r.get("images"):
+                attempts.append({"model": model, "ok": False, "reason": f"no image: {r.get('description', '')[:200]}"})
+                continue
+            ok, reason = accept(r)
+            attempts.append({"model": model, "ok": ok, "reason": reason})
+            if ok:
+                return r, model, attempts
+        except (HTTPError, TimeoutError, OSError) as e:
+            attempts.append({"model": model, "ok": False, "reason": str(e)[:300]})
+    return None, None, attempts
