@@ -14,6 +14,11 @@ if [ ! -d private/.git ]; then
   fi
 fi
 
+if [ -d private/.git ]; then
+  git -C private config core.hooksPath ../scripts/hooks/private
+  echo "private repo hooks installed (blocks keys)"
+fi
+
 if [ ! -f .env ]; then
   cp .env.example .env
   echo ".env created from .env.example: fill in the keys"
@@ -22,3 +27,5 @@ chmod 600 .env
 
 python3 -c "import PIL, numpy" 2>/dev/null && echo "python deps ok" || echo "install deps: python3 -m pip install --user pillow numpy"
 python3 scripts/security_check.py --all
+[ -d private/.git ] && python3 scripts/security_check.py --private --all
+exit 0

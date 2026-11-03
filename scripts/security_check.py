@@ -4,6 +4,7 @@
   security_check.py              # check the staged files (used by the pre-commit hook)
   security_check.py --all        # check every tracked file (manual audit / CI)
   security_check.py --message F  # check a commit message file (used by the commit-msg hook)
+  security_check.py --private [--all|--message F]   # the private repo: keys only (photos and client names allowed)
 
 Blocks: anything under private/, .env files, files over 5 MB, images, key-shaped strings, and every term
 listed by the private repo (client names, contacts) when private/ is present on this machine.
@@ -26,8 +27,27 @@ SECRET_PATTERNS = [
 BLOCKED_EXT = {".jpg", ".jpeg", ".png", ".webp", ".heic", ".gif", ".pdf", ".mp4", ".mov", ".opus", ".zip"}
 
 
+REPO = ROOT  # switched to private/ by --private
+
+
 def git(*args):
-    return subprocess.run(["git", "-C", str(ROOT), *args], capture_output=True, text=False).stdout
+    return subprocess.run(["git", "-C", str(REPO), *args], capture_output=True, text=False).stdout
+
+
+def check_private_repo(paths, staged):
+    """The private repo may hold client material and photos, but never keys."""
+    problems = []
+    for p in paths:
+        if not p:
+            continue
+        name = pathlib.PurePosixPath(p).name
+        if name == ".env" or (name.startswith(".env") and name != ".env.example"):
+            problems.append(f"{p}: env files hold keys"); continue
+        if pathlib.PurePosixPath(p).suffix.lower() in BLOCKED_EXT:
+            continue  # photos and references are allowed here
+        data = git("show", f":{p}") if staged else (REPO / p).read_bytes() if (REPO / p).exists() else b""
+        problems += check_text(p, data.decode(errors="ignore"), [])
+    return problems
 
 
 def private_terms():
@@ -82,8 +102,17 @@ def check_files(paths, staged):
 
 
 def main():
+    global REPO
     args = sys.argv[1:]
-    if args[:1] == ["--message"]:
+    if args[:1] == ["--private"]:  # hook of the private repo: secrets only
+        REPO = ROOT / "private"
+        rest = args[1:]
+        if rest[:1] == ["--message"]:
+            problems = check_text("commit message", pathlib.Path(rest[1]).read_text(), [])
+        else:
+            listing = git("ls-files") if rest[:1] == ["--all"] else git("diff", "--cached", "--name-only", "--diff-filter=ACMR")
+            problems = check_private_repo(listing.decode().splitlines(), staged=rest[:1] != ["--all"])
+    elif args[:1] == ["--message"]:
         problems = check_text("commit message", pathlib.Path(args[1]).read_text(), private_terms())
     elif args[:1] == ["--all"]:
         problems = check_files(git("ls-files").decode().splitlines(), staged=False)
@@ -94,7 +123,7 @@ def main():
         print("security check FAILED, nothing was committed:", file=sys.stderr)
         for x in problems:
             print("  - " + x, file=sys.stderr)
-        print("Fix the content (move client material to private/). Do not bypass this check.", file=sys.stderr)
+        print("Remove the key or move client material to private/, then commit again. Never bypass this check.", file=sys.stderr)
         sys.exit(1)
     print("security check ok")
 
