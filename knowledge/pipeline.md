@@ -59,6 +59,13 @@ draws a grid to read them). Add `"back": true` to a slot whose back is visible (
 `engine.py identity <id>` → one Nano Banana 2.1 Edit call per player, fallback chain on refusals,
 harmonisation pass, `edited/NN.png`, `sheet-edited.jpg`. Details: `knowledge/identity-edit.md`.
 
+Platform (checked 2026-11-10): the edit models stay on **fal.ai**. The Higgsfield API has no Nano Banana and
+no stand-alone GPT Image edit (only Soul, Grok Image 2.0, Qwen Image 3, Recraft, Ideogram, Marketing/Ads
+Studio). Nano Banana 2.1 is only in the Higgsfield web app. fal also exposes the safety settings
+(Nano Banana `safety_tolerance` "1"–"6", default "4"; GPT Image `enable_safety_checker`, default true), while
+Higgsfield adds its own moderation on input and output with no setting. The model makers' own filters
+(Google, OpenAI) apply on both.
+
 ## 6. Quality control
 `engine.py qc <id>` measures kit colour coverage (and face similarity when insightface is installed).
 Then Claude checks **every** edited image by eye against the face archive and the kit photo:
