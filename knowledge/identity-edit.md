@@ -81,3 +81,10 @@ handled by the fallback chain above, never by prompt tricks.
   turn and enlarge the head, and the paste-back left a ghost of the old head. A crop of about head to waist
   around the face box (margin 1.2× the box on each side), plus "do not copy their pose, angle or
   expression", kept size, position and gaze, and blended cleanly with a soft edge.
+- **Never send `aspect_ratio: "auto"` to Nano Banana** (2026-11-10, trophy edit on a 3:4 shot): it came back
+  2430×1760 landscape and re-framed the scene around bigger trophies. With the ratio fixed to the input's own
+  (3:4) the framing held and only the trophies changed. Engine and app now send the nearest supported ratio.
+- **Trophies (2026-11-10, Cubarsí):** a second edit with one reference photo per trophy, named by position
+  ("the trophy on the far left becomes image 2…"), replaced four generic Soul trophies with the real ones:
+  Aramco band, "YOUNG PLAYER OF THE TOURNAMENT", "FIFA WORLD CUP", "WORLD 11 · FIFPRO" all readable at
+  normal size. Faces first, trophies second. Small engraved text can still come out garbled: zoom and check.
