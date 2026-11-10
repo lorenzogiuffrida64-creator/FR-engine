@@ -75,5 +75,9 @@ handled by the fallback chain above, never by prompt tricks.
 - **The kit photo's number is copied.** A kit reference showing a number puts that number on the edit:
   use a blank shop photo, or a photo of the same player.
 - **A second, face-only pass is not worth it by default.** On a medium face the gain is barely visible; on a
-  Cinema shot the likeness got stronger but the head came back larger and brighter than the body. Keep it as
-  a manual "improve the face" option, with a box around the face only (not head and shoulders).
+  Cinema shot the likeness got stronger but the head came back larger and brighter than the body. It is a
+  manual "Migliora il volto" option in the app instead.
+- **For that face pass, give the model the body.** A crop of mostly face let the frontal reference photos
+  turn and enlarge the head, and the paste-back left a ghost of the old head. A crop of about head to waist
+  around the face box (margin 1.2× the box on each side), plus "do not copy their pose, angle or
+  expression", kept size, position and gaze, and blended cleanly with a soft edge.
