@@ -88,3 +88,9 @@ handled by the fallback chain above, never by prompt tricks.
   ("the trophy on the far left becomes image 2…"), replaced four generic Soul trophies with the real ones:
   Aramco band, "YOUNG PLAYER OF THE TOURNAMENT", "FIFA WORLD CUP", "WORLD 11 · FIFPRO" all readable at
   normal size. Faces first, trophies second. Small engraved text can still come out garbled: zoom and check.
+- **Integration is the weak point (Lorenzo, 2026-11-10, Cubarsí).** The likeness and the trophy details were
+  right, but the face carried the flat daylight of the reference photos instead of the scene's light, and
+  the trophies looked pasted in (their own studio light, no reflection or contact shadow in the scene).
+  Fixes to test: in each edit prompt, name the scene's lights and tell the model to light the new face or
+  object only by them (direction, colour temperature, falloff, reflections, contact shadow, grain, depth of
+  field); then run the harmonisation pass on the whole image, which the test skipped.

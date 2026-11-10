@@ -95,3 +95,7 @@ Change one variable per pass. Name what failed ("the claret went magenta"), find
 - **Soul 2.0 + "Theatrical light" style (2026-11-10, full-body night action):** warmer, darker and more
   filmic than Soul 2.0's default, and it keeps the slimmer build Soul 2.0 follows better than Cinema.
   A good middle between Soul 2.0's accuracy and Cinema's drama. Expect small swooshes/crests on the chest.
+- **No poster composites (Lorenzo, 2026-11-10).** A giant floating portrait above a small full figure, double
+  exposures and collage layouts are out, even when they look striking: every graphic must read as one real
+  photograph taken in one place. Soul Cinema drifts into this layout by itself on symmetrical "gallery"
+  briefs; reject those shots at pre-selection.
