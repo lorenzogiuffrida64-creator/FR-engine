@@ -74,3 +74,6 @@ handled by the fallback chain above, never by prompt tricks.
   build in block 03 and prefer the base whose body is closest.
 - **The kit photo's number is copied.** A kit reference showing a number puts that number on the edit:
   use a blank shop photo, or a photo of the same player.
+- **A second, face-only pass is not worth it by default.** On a medium face the gain is barely visible; on a
+  Cinema shot the likeness got stronger but the head came back larger and brighter than the body. Keep it as
+  a manual "improve the face" option, with a box around the face only (not head and shoulders).

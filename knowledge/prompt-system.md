@@ -92,3 +92,6 @@ Medium-format digital sports editorial photograph on a Hasselblad, a real magazi
 ## How to iterate
 Change one variable per pass. Name what failed ("the claret went magenta"), find the block responsible
 (05), fix only that block. Everything else stays word for word.
+- **Soul 2.0 + "Theatrical light" style (2026-11-10, full-body night action):** warmer, darker and more
+  filmic than Soul 2.0's default, and it keeps the slimmer build Soul 2.0 follows better than Cinema.
+  A good middle between Soul 2.0's accuracy and Cinema's drama. Expect small swooshes/crests on the chest.
