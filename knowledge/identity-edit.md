@@ -66,3 +66,11 @@ handled by the fallback chain above, never by prompt tricks.
 - **GPT Image 2.6 Flare refuses real public figures** (fal 422 `content_policy_violation` on the prompt)
   even with `enable_safety_checker: false`. It stays as the fallback for other failures, but for a star it
   will not rescue a Nano Banana refusal.
+- **Full-body action (2026-11-10, faces ~10% of frame height):** a whole-frame edit beat crop + paste back
+  on both shots. The face was as good, and only the whole frame rebuilt the full kit (shorts, socks), the
+  tattoo and the armband; the crop left the old shorts and socks below its edge. Keep the crop for small
+  faces in group shots, or make the box cover the whole body.
+- **The edit keeps the base's build.** A heavy Cinema body stays heavy under the new face. Describe the
+  build in block 03 and prefer the base whose body is closest.
+- **The kit photo's number is copied.** A kit reference showing a number puts that number on the edit:
+  use a blank shop photo, or a photo of the same player.
