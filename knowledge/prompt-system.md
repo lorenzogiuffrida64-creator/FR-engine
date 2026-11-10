@@ -79,6 +79,15 @@ Medium-format digital sports editorial photograph on a Hasselblad, a real magazi
   sky, or a tighter crop above the boards), and describe only what *is* behind the player.
 - **The blank-chest sentence mostly holds** (3 of 4); the fourth grew a small made-up logo with letters.
   Keep the sentence, and expect to reject or fix about one shot in four at pre-selection.
+- **Soul Cinema with the same prompt (2026-11-10, 4 shots):**
+  - Chest blank in 4 of 4: better than Soul 2.0.
+  - Tighter framing and larger faces on its own, with more contrast, softer film and more drama.
+  - **Deep navy turns bright cobalt / electric blue**, slightly violet in 2 shots. In the Cinema leg, block 05
+    must ban the bright neighbours of navy by name: "never cobalt, never electric blue, never bright royal blue".
+  - **The centre stripe drifts** off-centre or narrows in 3 of 4. Pin it: "one wide red stripe exactly in the
+    centre of the chest, running straight from the collar to the hem".
+  - It also adds LED boards in magenta and pink with made-up lettering, so the block 02/07 fix above
+    applies to both models.
 
 ## How to iterate
 Change one variable per pass. Name what failed ("the claret went magenta"), find the block responsible
