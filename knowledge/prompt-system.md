@@ -72,6 +72,14 @@ the concept. Every orphan word is an instruction. `engine.py lint <request>` cat
 Medium-format digital sports editorial photograph on a Hasselblad, a real magazine shoot inside a football stadium at night rather than a render. Shot from a low position just above the grass with a 50mm lens, framing the player centred from the top of his head to mid-shin, with the empty stands rising behind him. He is a professional footballer in his late twenties, lean and athletic, with olive skin, short dark hair in a tight fade, a short trimmed beard, a defined jaw, and a calm, proud stare straight into the lens, his face frontal and fully lit. He stands square to camera with his weight on his right leg, the match ball tucked against his right hip under his forearm, and his left hand raised at chest height with three fingers open. Two more match balls rest on the wet grass at his feet. Every blue garment is the same deep royal blue, a saturated mid-dark blue, never navy-black, never turquoise, never violet. His shirt is a short-sleeve football jersey in that royal blue with a thin white ribbed crew collar and white cuffs, the chest completely blank with no crest, no sponsor and no number. He wears matching shorts in that blue and white socks pulled over shin pads. The pitch is freshly watered, with droplets on the grass and the white centre-circle line curving behind his boots. The stands are rows of empty seats fading into darkness, and the edge of the stadium roof is cut off by the top of the frame. Hard white floodlight from high behind both shoulders at 5600K rims his hair and shoulders, a soft frontal fill keeps his face readable, fine mist catches the light, and a sharp contact shadow sits under his boots. The palette is royal blue, white, wet green, black and warm skin, with deep blacks that are not crushed. There is fine grain over the whole frame, visible weave in the jersey fabric, and sweat and pores on the skin.
 ```
 
+## Learned from tests
+- **"Cropped out of frame" doesn't remove stadium advertising boards** (Soul 2.0, 2026-11-10, 4 of 4 shots
+  at pitch level had boards, 3 with made-up lettering). Soul draws what a pitch-side stadium has. Fix in
+  block 02/07: frame so the boards are physically not there (camera low looking up at stands and night
+  sky, or a tighter crop above the boards), and describe only what *is* behind the player.
+- **The blank-chest sentence mostly holds** (3 of 4); the fourth grew a small made-up logo with letters.
+  Keep the sentence, and expect to reject or fix about one shot in four at pre-selection.
+
 ## How to iterate
 Change one variable per pass. Name what failed ("the claret went magenta"), find the block responsible
 (05), fix only that block. Everything else stays word for word.

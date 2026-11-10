@@ -30,6 +30,13 @@ no names). Set `request.json → concept / moodboard` to the main one. Then `eng
 `engine.py shots <id>` → Soul 2.0 + Soul Cinema in parallel, 16 shots (immediate) or 24 (planned),
 downloaded to `shots/`, numbered contact sheet `sheet-shots.jpg`.
 
+Measured on the API (2026-11-10):
+- `resolution: 1080p` at 3:4 returns **1536×2048**, the same size as "2k" on the Higgsfield web app.
+- Cost (free `POST /estimate/<model>` with the same body): Soul 2.0 1080p ×4 = **$0.023**, ×1 = $0.006,
+  720p ×4 = $0.013; Soul Cinema 1080p ×4 = $0.022. A 16-shot request costs about $0.10 in Higgsfield.
+- Output files are deleted by Higgsfield after 7 days: the engine downloads every shot straight away.
+- Failed and moderated (`nsfw`) requests are not charged.
+
 ## 4. Pre-selection (Claude)
 Open the contact sheet, then the strongest shots at full size. Keep the best ~10 that are both:
 - **on mood board** (light, palette, grain, the concept reads at a glance), and
