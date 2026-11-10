@@ -55,3 +55,14 @@ from `config.json → fal.safety` (matched by id prefix):
 This only relaxes fal's own filter (false positives on sweaty, shirtless or injury shots). Google's and
 OpenAI's filters inside the models, including refusals of real public figures, are untouched: those are
 handled by the fallback chain above, never by prompt tricks.
+
+## Learned from tests
+- **First real test (2026-11-10, one player, whole-frame edit, no crop):** Nano Banana 2.1 at "6" with 3 face
+  photos + 1 kit photo turned a generic Soul player into a clearly recognisable star in 32 s, on 2 of 2
+  shots. It rebuilt the full kit from the photo (stripes, crest, badges, trim), matched the skin tone of
+  neck and arms and even added his real arm tattoo. Background players are left as they are.
+- **The Soul base can be generic.** A base player of a different skin tone and age still worked; the
+  prompt line "match the skin tone of his neck, arms and hands to that man" is doing its job.
+- **GPT Image 2.6 Flare refuses real public figures** (fal 422 `content_policy_violation` on the prompt)
+  even with `enable_safety_checker: false`. It stays as the fallback for other failures, but for a star it
+  will not rescue a Nano Banana refusal.
