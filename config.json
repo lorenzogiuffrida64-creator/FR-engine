@@ -23,9 +23,14 @@
     "env_key": "FAL_KEY",
     "edit_models": [
       "google/nano-banana-2.1/edit",
-      "fal-ai/bytedance/seedream/v4/edit"
+      "openai/gpt-image-2.6/flare/edit"
     ],
-    "edit_models_note": "Ordered fallback chain. Every model must accept prompt + image_urls. The second id is a placeholder: confirm the backup model and its id.",
+    "edit_models_note": "Ordered fallback chain. Every model must accept prompt + image_urls.",
+    "safety": {
+      "google/nano-banana": {"safety_tolerance": "6"},
+      "openai/gpt-image": {"enable_safety_checker": false}
+    },
+    "safety_note": "Least strict official setting per model family (matched by id prefix), sent with every edit. Nano Banana: \"1\" strictest to \"6\" least strict, fal default \"4\". GPT Image: false asks for relaxed screening, honoured only if fal has authorised the account; otherwise it is ignored and the normal check runs.",
     "resolution": "2K",
     "output_format": "png",
     "max_faces": 3,

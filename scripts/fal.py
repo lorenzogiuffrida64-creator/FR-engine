@@ -13,6 +13,14 @@ def _auth():
     return {"Authorization": f"Key {key}"}
 
 
+def safety_for(model):
+    """Safety fields for this model from config (first id-prefix match), e.g. {"safety_tolerance": "6"}."""
+    for prefix, fields in F.get("safety", {}).items():
+        if model.startswith(prefix):
+            return dict(fields)
+    return {}
+
+
 def edit(model, prompt, images, aspect_ratio="auto"):
     """images: list of local paths (image 1 first). Returns the result dict ({images:[{url,...}], description})."""
     auth = _auth()
@@ -20,6 +28,7 @@ def edit(model, prompt, images, aspect_ratio="auto"):
             "output_format": F["output_format"]}
     if model.startswith("google/nano-banana"):
         body.update({"resolution": F["resolution"], "aspect_ratio": aspect_ratio})
+    body.update(safety_for(model))
     h = http_json("POST", f"{F['queue_url']}/{model}", headers=auth, body=body, timeout=120)
     status_url = h.get("status_url") or f"{F['queue_url']}/{model}/requests/{h['request_id']}/status"
     response_url = h.get("response_url") or f"{F['queue_url']}/{model}/requests/{h['request_id']}"

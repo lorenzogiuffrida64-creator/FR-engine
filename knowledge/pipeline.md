@@ -62,7 +62,7 @@ harmonisation pass, `edited/NN.png`, `sheet-edited.jpg`. Details: `knowledge/ide
 Platform (checked 2026-11-10): the edit models stay on **fal.ai**. The Higgsfield API has no Nano Banana and
 no stand-alone GPT Image edit (only Soul, Grok Image 2.0, Qwen Image 3, Recraft, Ideogram, Marketing/Ads
 Studio). Nano Banana 2.1 is only in the Higgsfield web app. fal also exposes the safety settings
-(Nano Banana `safety_tolerance` "1"–"6", default "4"; GPT Image `enable_safety_checker`, default true), while
+(Nano Banana `safety_tolerance` "1"–"6", fal default "4"; GPT Image `enable_safety_checker`, default true; the engine sends the least strict of each, see `identity-edit.md`), while
 Higgsfield adds its own moderation on input and output with no setting. The model makers' own filters
 (Google, OpenAI) apply on both.
 

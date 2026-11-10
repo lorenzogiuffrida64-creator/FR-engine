@@ -36,11 +36,22 @@ Unify the lighting, colour grading, grain and skin rendering of this photograph 
 ## Blocks and fallbacks
 Some models refuse some players (Messi on GPT Image). We never trick a filter with prompt games: it is
 fragile and risks the account on a matchday. We route instead:
-- `config.json → fal.edit_models` is an ordered list. The first is `google/nano-banana-2.1/edit`.
+- `config.json → fal.edit_models` is an ordered list: `google/nano-banana-2.1/edit`, then
+  `openai/gpt-image-2.6/flare/edit`.
 - A slot moves to the next model when the call errors, returns no image, or returns an image where the
   face region barely changed (`fal.unchanged_threshold`: the model silently ignored the edit).
 - Every attempt is logged in `private/requests/<id>/edits.json` with the model used.
 
 ## Settings
 `resolution: 2K`, `output_format: png`, `aspect_ratio: auto` (keeps the crop's ratio), `num_images: 1`.
-`safety_tolerance` stays at the default. Multiple attempts per slot come from re-running, not from batch.
+Multiple attempts per slot come from re-running, not from batch.
+
+Safety (decided 2026-11-10): every edit is sent with the **least strict official setting** of its model,
+from `config.json → fal.safety` (matched by id prefix):
+- Nano Banana 2.1: `"safety_tolerance": "6"` (fal default "4", "1" is strictest).
+- GPT Image 2.6 Flare / Sunburst: `"enable_safety_checker": false`. fal only honours this for accounts it
+  has authorised; otherwise it is ignored and the normal check runs. Ask fal support to authorise the
+  client's account.
+This only relaxes fal's own filter (false positives on sweaty, shirtless or injury shots). Google's and
+OpenAI's filters inside the models, including refusals of real public figures, are untouched: those are
+handled by the fallback chain above, never by prompt tricks.
