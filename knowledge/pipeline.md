@@ -37,6 +37,16 @@ Measured on the API (2026-11-10):
 - Output files are deleted by Higgsfield after 7 days: the engine downloads every shot straight away.
 - Failed and moderated (`nsfw`) requests are not charged.
 
+Concurrency on the API (open.higgsfield.ai/pricing + docs, read 2026-11-10):
+- Unlocked by **funds added in the past 28 days** (not the current balance): new account 2 · ≥$25 → 10 ·
+  ≥$100 → 20 · ≥$1,000 → 40 · more via sales (support@higgsfield.ai), incl. dedicated capacity.
+- Account limit covers all models; some models have their own extra limit. Current value: Console only
+  (no API endpoint, no rate-limit headers).
+- Above the limit, requests are still accepted as `queued` and start on their own. The queue is capped at a
+  multiple of the limit (each batch output counts); when full → `429 account_queue_full` + `Retry-After`,
+  nothing charged. Resubmit after `Retry-After` with the same Idempotency-Key.
+- Set `config.json → higgsfield.max_parallel` to the account's current limit.
+
 ## 4. Pre-selection (Claude)
 Open the contact sheet, then the strongest shots at full size. Keep the best ~10 that are both:
 - **on mood board** (light, palette, grain, the concept reads at a glance), and
